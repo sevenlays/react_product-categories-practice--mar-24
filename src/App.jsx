@@ -182,6 +182,7 @@ export const App = () => {
                 className={cn('button is-success mr-6', {
                   'is-outlined': visibleCaategory !== 'All',
                 })}
+                onClick={() => setVisibleCaategories('All')}
               >
                 All
               </a>
