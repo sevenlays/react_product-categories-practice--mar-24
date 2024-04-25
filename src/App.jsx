@@ -340,7 +340,7 @@ export const App = () => {
                                 sortBy === SORT_USER &&
                                 sortDirection === SORT_DIRECTION_ASC,
                               'fa-sort-down':
-                                sortBy === SORT_CATEGORY &&
+                                sortBy === SORT_USER &&
                                 sortDirection === SORT_DIRECTION_DESC,
                             })}
                           />
