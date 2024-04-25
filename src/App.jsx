@@ -45,6 +45,14 @@ export const App = () => {
     );
   }
 
+  function handleResetAll() {
+    setSelectedOwner('All');
+    setSortBy('');
+    setSortByQuery('');
+    setSortDirection();
+    setVisibleCaategories('All');
+  }
+
   function getVisibleProducts(
     productsArr,
     owner,
@@ -207,6 +215,7 @@ export const App = () => {
                 data-cy="ResetAllButton"
                 href="#/"
                 className="button is-link is-outlined is-fullwidth"
+                onClick={handleResetAll}
               >
                 Reset all filters
               </a>
