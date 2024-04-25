@@ -43,7 +43,13 @@ export const App = () => {
     );
   }
 
-  function getVisibleProducts(productsArr, owner, query, sortByKey) {
+  function getVisibleProducts(
+    productsArr,
+    owner,
+    query,
+    sortByKey,
+    isReversed,
+  ) {
     let visibleProducts = [...productsArr];
 
     if (owner !== 'All') {
@@ -79,7 +85,7 @@ export const App = () => {
       });
     }
 
-    if (sortByKey) {
+    if (isReversed === SORT_DIRECTION_ASC && sortByKey) {
       visibleProducts.reverse();
     }
 
@@ -91,6 +97,7 @@ export const App = () => {
     selectedOwner,
     sortByQuery,
     sortBy,
+    sortDirection,
   );
 
   return (
@@ -220,6 +227,60 @@ export const App = () => {
                       <a
                         href="#/"
                         onClick={() => {
+                          setSortBy(SORT_PRODUCT);
+                          handleSortDirection();
+                        }}
+                      >
+                        <span className="icon">
+                          <i
+                            data-cy="SortIcon"
+                            className={cn('fas fa-sort', {
+                              'fa-sort-up':
+                                sortBy === SORT_PRODUCT &&
+                                sortDirection === SORT_DIRECTION_ASC,
+                              'fa-sort-down':
+                                sortBy === SORT_PRODUCT &&
+                                sortDirection === SORT_DIRECTION_DESC,
+                            })}
+                          />
+                        </span>
+                      </a>
+                    </span>
+                  </th>
+
+                  <th>
+                    <span className="is-flex is-flex-wrap-nowrap">
+                      Category
+                      <a
+                        href="#/"
+                        onClick={() => {
+                          setSortBy(SORT_CATEGORY);
+                          handleSortDirection();
+                        }}
+                      >
+                        <span className="icon">
+                          <i
+                            data-cy="SortIcon"
+                            className={cn('fas fa-sort', {
+                              'fa-sort-up':
+                                sortBy === SORT_CATEGORY &&
+                                sortDirection === SORT_DIRECTION_ASC,
+                              'fa-sort-down':
+                                sortBy === SORT_CATEGORY &&
+                                sortDirection === SORT_DIRECTION_DESC,
+                            })}
+                          />
+                        </span>
+                      </a>
+                    </span>
+                  </th>
+
+                  <th>
+                    <span className="is-flex is-flex-wrap-nowrap">
+                      User
+                      <a
+                        href="#/"
+                        onClick={() => {
                           setSortBy(SORT_USER);
                           handleSortDirection();
                         }}
@@ -234,40 +295,6 @@ export const App = () => {
                               'fa-sort-down':
                                 sortBy === SORT_USER &&
                                 sortDirection === SORT_DIRECTION_DESC,
-                            })}
-                          />
-                        </span>
-                      </a>
-                    </span>
-                  </th>
-
-                  <th>
-                    <span className="is-flex is-flex-wrap-nowrap">
-                      Category
-                      <a href="#/" onClick={() => setSortBy(SORT_CATEGORY)}>
-                        <span className="icon">
-                          <i
-                            data-cy="SortIcon"
-                            className={cn('fas fa-sort', {
-                              'fa-sort-up': !SORT_PRODUCT,
-                              'fa-sort-down': SORT_PRODUCT,
-                            })}
-                          />
-                        </span>
-                      </a>
-                    </span>
-                  </th>
-
-                  <th>
-                    <span className="is-flex is-flex-wrap-nowrap">
-                      User
-                      <a href="#/" onClick={() => setSortBy(SORT_USER)}>
-                        <span className="icon">
-                          <i
-                            data-cy="SortIcon"
-                            className={cn('fas fa-sort', {
-                              'fa-sort-up': SORT_PRODUCT,
-                              'fa-sort-down': !SORT_PRODUCT,
                             })}
                           />
                         </span>
