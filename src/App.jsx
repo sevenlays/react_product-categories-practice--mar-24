@@ -248,7 +248,18 @@ export const App = () => {
                         }}
                       >
                         <span className="icon">
-                          <i data-cy="SortIcon" className="fas fa-sort" />
+                          <i
+                            data-cy="SortIcon"
+                            className={cn('fas', {
+                              'fa-sort': sortBy !== SORT_ID,
+                              'fa-sort-up':
+                                sortBy === SORT_ID &&
+                                sortDirection === SORT_DIRECTION_ASC,
+                              'fa-sort-down':
+                                sortBy === SORT_ID &&
+                                sortDirection === SORT_DIRECTION_DESC,
+                            })}
+                          />
                         </span>
                       </a>
                     </span>
@@ -267,7 +278,8 @@ export const App = () => {
                         <span className="icon">
                           <i
                             data-cy="SortIcon"
-                            className={cn('fas fa-sort', {
+                            className={cn('fas', {
+                              'fa-sort': sortBy !== SORT_PRODUCT,
                               'fa-sort-up':
                                 sortBy === SORT_PRODUCT &&
                                 sortDirection === SORT_DIRECTION_ASC,
@@ -294,7 +306,8 @@ export const App = () => {
                         <span className="icon">
                           <i
                             data-cy="SortIcon"
-                            className={cn('fas fa-sort', {
+                            className={cn('fas', {
+                              'fa-sort': sortBy !== SORT_CATEGORY,
                               'fa-sort-up':
                                 sortBy === SORT_CATEGORY &&
                                 sortDirection === SORT_DIRECTION_ASC,
@@ -321,12 +334,13 @@ export const App = () => {
                         <span className="icon">
                           <i
                             data-cy="SortIcon"
-                            className={cn('fas fa-sort', {
+                            className={cn('fas', {
+                              'fa-sort': sortBy !== SORT_USER,
                               'fa-sort-up':
                                 sortBy === SORT_USER &&
                                 sortDirection === SORT_DIRECTION_ASC,
                               'fa-sort-down':
-                                sortBy === SORT_USER &&
+                                sortBy === SORT_CATEGORY &&
                                 sortDirection === SORT_DIRECTION_DESC,
                             })}
                           />
