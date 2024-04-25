@@ -35,6 +35,7 @@ export const App = () => {
   const [sortBy, setSortBy] = useState('');
   const [sortByQuery, setSortByQuery] = useState('');
   const [sortDirection, setSortDirection] = useState(SORT_DIRECTION_ASC);
+  const [visibleCaategory, setVisibleCaategories] = useState('All');
 
   function handleSortDirection() {
     setSortDirection(
@@ -50,6 +51,7 @@ export const App = () => {
     query,
     sortByKey,
     isReversed,
+    category,
   ) {
     let visibleProducts = [...productsArr];
 
@@ -92,6 +94,12 @@ export const App = () => {
       visibleProducts.reverse();
     }
 
+    if (category !== 'All') {
+      visibleProducts = visibleProducts.filter(
+        product => product.category.title === category,
+      );
+    }
+
     return visibleProducts;
   }
 
@@ -101,6 +109,7 @@ export const App = () => {
     sortByQuery,
     sortBy,
     sortDirection,
+    visibleCaategory,
   );
 
   return (
@@ -170,7 +179,9 @@ export const App = () => {
               <a
                 href="#/"
                 data-cy="AllCategories"
-                className="button is-success mr-6 is-outlined"
+                className={cn('button is-success mr-6', {
+                  'is-outlined': visibleCaategory !== 'All',
+                })}
               >
                 All
               </a>
@@ -179,8 +190,11 @@ export const App = () => {
                 <a
                   key={category.id}
                   data-cy="Category"
-                  className="button mr-2 my-1 is-info"
+                  className={cn('button mr-2 my-1', {
+                    'is-info': visibleCaategory === category.title,
+                  })}
                   href="#/"
+                  onClick={() => setVisibleCaategories(category.title)}
                 >
                   {category.title}
                 </a>
