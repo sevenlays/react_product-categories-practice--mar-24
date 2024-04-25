@@ -26,6 +26,7 @@ const copyProducts = [...products];
 const SORT_PRODUCT = 'productname';
 const SORT_CATEGORY = 'categoryname';
 const SORT_USER = 'username';
+const SORT_ID = 'id';
 const SORT_DIRECTION_ASC = 'asc';
 const SORT_DIRECTION_DESC = 'DESC';
 
@@ -78,6 +79,8 @@ export const App = () => {
             );
           case SORT_USER:
             return product1.user.name.localeCompare(product2.user.name);
+          case SORT_ID:
+            return product1.id - product2.id;
 
           default:
             return 0;
@@ -213,7 +216,13 @@ export const App = () => {
                   <th>
                     <span className="is-flex is-flex-wrap-nowrap">
                       ID
-                      <a href="#/">
+                      <a
+                        href="#/"
+                        onClick={() => {
+                          setSortBy(SORT_ID);
+                          handleSortDirection();
+                        }}
+                      >
                         <span className="icon">
                           <i data-cy="SortIcon" className="fas fa-sort" />
                         </span>
